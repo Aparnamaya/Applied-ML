@@ -1,0 +1,12 @@
+#!/usr/bin/env pwsh
+Write-Host "🔍 Running tests before commit..."
+pytest test_app.py --maxfail=1 --disable-warnings
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "❌ Tests failed. Commit aborted."
+    exit 1
+} else {
+    Write-Host "✅ Tests passed. Proceeding with commit."
+    exit 0
+}
+
